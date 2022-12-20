@@ -1,24 +1,25 @@
 package com.example.myapplication;
 
-import java.util.ArrayList;
-
 public class User {
 
 
     private String password;
     private String email;
-    private int score;
     private String username;
     public static User loggedInUser = null;
+    private int score;
 
 
-
-    public User(String email,String password, int score, String username){
+    public User(String email, String password, int score, String username) {
         this.email = email;
         this.password = password;
         this.score = score;
-        this.username= username;
+        this.username = username;
 
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public String getEmail() {
@@ -27,10 +28,6 @@ public class User {
 
     public String getPassword() {
         return password;
-    }
-
-    public int getScore() {
-        return score;
     }
 
     public String getUsername() {

@@ -214,8 +214,7 @@
 
                 <ImageView
                     android:layout_marginStart="2dp"
-                    android:src="@drawable/instagram"
-                    android:tint="@color/white"
+                                        android:tint="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 

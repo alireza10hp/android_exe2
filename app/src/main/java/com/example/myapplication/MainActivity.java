@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,16 +23,14 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.utils.Constants;
-import com.example.myapplication.utils.DatabaseHelper;
-import com.example.myapplication.utils.HttpHandler;
 import com.example.myapplication.adapters.CategoryAdapter;
 import com.example.myapplication.models.Category;
 import com.example.myapplication.models.SessionToken;
+import com.example.myapplication.utils.Constants;
 import com.example.myapplication.utils.DBManager;
-import com.google.android.gms.ads.AdRequest;
+import com.example.myapplication.utils.DatabaseHelper;
+import com.example.myapplication.utils.HttpHandler;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,22 +41,6 @@ import java.util.List;
 import shortbread.Shortbread;
 import shortbread.Shortcut;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
-import android.content.ContentValues;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
 
     private List<Category> categories;
@@ -65,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = MainActivity.class.getSimpleName();
     private String token;
     private DBManager dbManager;
+    public static User userLoggedIn;
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    public static SQLiteDatabase loggedInUser;
+    String email ="";
+    public static  DataBaseUser userDatabase;
+    public static ArrayList<User> userArrayList;
 
     @Shortcut(id = "play_random", icon = R.drawable.ic_shortcut_play_arrow, shortLabel = "Quick Play")
     public void playRandom() {
@@ -81,17 +72,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         MultiDex.install(this);
 
-        MobileAds.initialize(this);
-        AdView adView = findViewById(R.id.adView);
-        adView.loadAd(new AdRequest.Builder().build());
+        //MobileAds.initialize(this);
+        //AdView adView = findViewById(R.id.adView);
+        //adView.loadAd(new AdRequest.Builder().build());
+
+        Button profileButton = (Button) findViewById(R.id.profileButton);
+        Button startButton = (Button) findViewById(R.id.gameButton);
+        Button settingButton = (Button) findViewById(R.id.settingButton);
+        Button exitButton = (Button) findViewById(R.id.exitButton);
+        Button scoreboardButton = (Button) findViewById(R.id.scoreboardButton);
+
+        userDatabase = new DataBaseUser(MainActivity.this);
+        userArrayList = new ArrayList<>();
+        userArrayList = userDatabase.readCourses();
+
+
+        loggedInUser = openOrCreateDatabase("loggedInUser", MODE_PRIVATE, null);
+        loggedInUser.execSQL("CREATE TABLE IF NOT EXISTS LoggedIn (Username TEXT);");
+        Cursor resultSet = loggedInUser.rawQuery("Select * from LoggedIn", null);
+
+        resultSet.moveToFirst();
+
+        if (resultSet.getCount() == 0) {
+            email = "";
+        } else {
+            email = resultSet.getString(0);
+            userLoggedIn = LoginActivity.getUserByEmail(email);
+        }
 
         sharedPreferences = getSharedPreferences("Trivia", MODE_PRIVATE);
 
-        if (sharedPreferences.getBoolean("firstRun", true)) {
-            startActivity(new Intent(this, AppIntro.class));
-            finish();
-            return;
-        }
 
         Shortbread.create(this);
         categories = new ArrayList<>();
@@ -217,13 +227,13 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
 
-            case R.id.action_intro:
+            /*case R.id.action_intro:
 
                 Intent intent1 = new Intent(this, AppRepeatIntro.class);
                 startActivity(intent1);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
-                return true;
+                return true;*/
 
             case R.id.action_policy:
 

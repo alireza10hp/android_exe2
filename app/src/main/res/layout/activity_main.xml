@@ -6,23 +6,68 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/gameButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40pt"
+            android:layout_marginEnd="40pt"
+            android:backgroundTint="@color/purple_700"
+
+            android:text="@string/start_game" />
+
+
+
+        <Button
+            android:id="@+id/profileButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40pt"
+            android:layout_marginEnd="40pt"
+            android:backgroundTint="@color/purple_700"
+            android:text="@string/profile" />
+
+        <Button
+            android:id="@+id/settingButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40pt"
+            android:layout_marginEnd="40pt"
+            android:backgroundTint="@color/purple_700"
+            android:text="@string/setting" />
+
+        <Button
+            android:id="@+id/scoreboardButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40pt"
+            android:layout_marginEnd="40pt"
+            android:backgroundTint="@color/purple_700"
+            android:text="@string/scoreboard" />
+
+        <Button
+            android:id="@+id/exitButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60pt"
+            android:layout_marginEnd="60pt"
+            android:backgroundTint="#FF0000"
+            android:text="@string/exit" />
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerview"
-        app:layout_constraintBottom_toTopOf="@id/adView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:adUnitId="@string/banner_id_1"
-        app:adSize="BANNER"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -183,13 +183,14 @@ public class ScoreboardActivity extends AppCompatActivity {
 
     }
 
-    private void launchMainMenuActivity(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
 
     private void launchUserInfoActivity(View view){
         Intent intent = new Intent(this, UserInfoActivity.class);
+        startActivity(intent);
+    }
+
+    private void launchMainMenuActivity(View view){
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
