@@ -30,7 +30,6 @@ import com.example.myapplication.utils.Constants;
 import com.example.myapplication.utils.DBManager;
 import com.example.myapplication.utils.DatabaseHelper;
 import com.example.myapplication.utils.HttpHandler;
-import com.google.android.gms.ads.AdView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,9 +71,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         MultiDex.install(this);
 
-        //MobileAds.initialize(this);
-        //AdView adView = findViewById(R.id.adView);
-        //adView.loadAd(new AdRequest.Builder().build());
 
         Button profileButton = (Button) findViewById(R.id.profileButton);
         Button startButton = (Button) findViewById(R.id.gameButton);
@@ -121,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             Cursor cursor = dbManager.get();
-            token = cursor.getString(cursor.getColumnIndex(DatabaseHelper.TOKEN));
+            //token = cursor.getString(cursor.getColumnIndex(DatabaseHelper.TOKEN));
 
             if (!cursor.isClosed()) {
                 cursor.close();
@@ -227,27 +223,11 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
 
-            /*case R.id.action_intro:
-
-                Intent intent1 = new Intent(this, AppRepeatIntro.class);
-                startActivity(intent1);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-                return true;*/
-
             case R.id.action_policy:
 
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse("https://lvamsavarthan.github.io/lvstore/trivia_privacy_policy.html"));
                 startActivity(i);
-
-                return true;
-
-            case R.id.action_about:
-
-                Intent intent2 = new Intent(this, About.class);
-                startActivity(intent2);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
                 return true;
 

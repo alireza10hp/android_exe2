@@ -41,9 +41,6 @@ public class StartQuizActivity extends AppCompatActivity {
         Category category = new Category("Animals", "#6d4c41", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fanimals.png?alt=media&token=1f3a8a1a-a5af-43a3-8be1-650d7286a6c3", 27);
         categories.add(category);
 
-        category = new Category("Art", "#5e35b1", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fart.png?alt=media&token=578806b0-d8b0-41f3-b66e-54c1b8df3e36", 25);
-        categories.add(category);
-
         category = new Category("Books", "#f4511e", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fe_books.png?alt=media&token=3d6ac023-8d10-4f86-bbb0-93d216898a72", 10);
         categories.add(category);
 
@@ -56,25 +53,13 @@ public class StartQuizActivity extends AppCompatActivity {
         category = new Category("Computers", "#546e7a", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fcomputer.png?alt=media&token=c7c71fad-c14d-43d3-925c-bf17c188a1a9", 18);
         categories.add(category);
 
+        category = new Category("Art", "#5e35b1", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fart.png?alt=media&token=578806b0-d8b0-41f3-b66e-54c1b8df3e36", 25);
+        categories.add(category);
+
         category = new Category("Film", "#5e35b1", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fe_movie.png?alt=media&token=8fb634b1-cf6b-43d9-b733-47c2450d65c1", 11);
         categories.add(category);
 
         category = new Category("Games", "#3949ab", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fe_games.png?alt=media&token=66ab03da-96f8-4617-a92a-6eb6c5b42c08", 15);
-        categories.add(category);
-
-        category = new Category("General Knowledge", "#ffb300", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fgeneral_knowledge.png?alt=media&token=0c36beb4-489f-4929-8fa5-b9feac3f1fbe", 9);
-        categories.add(category);
-
-        category = new Category("Geography", "#5d4037", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fgeography.png?alt=media&token=fd5fbd58-173f-4500-9905-b8726b7bb624", 22);
-        categories.add(category);
-
-        category = new Category("Music", "#ad1457", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fe_music.png?alt=media&token=0f19db8e-e3d6-4de9-87c7-e42d47308c94", 12);
-        categories.add(category);
-
-        category = new Category("History", "#0097a7", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fhistory.png?alt=media&token=e6023b1a-3eef-460b-8c1e-9dc577e330da", 23);
-        categories.add(category);
-
-        category = new Category("Mathematics", "#0097a7", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fmaths.png?alt=media&token=c3fde85b-e36f-4655-91ea-91730ac17725", 19);
         categories.add(category);
 
         category = new Category("Mythology", "#303f9f", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fmythology.png?alt=media&token=8d7ff9bd-d8b4-4620-ae8b-4fe91e730a4f", 20);
@@ -92,6 +77,22 @@ public class StartQuizActivity extends AppCompatActivity {
         category = new Category("Vehicles", "#fb8c00", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fvehicle.png?alt=media&token=63602745-d5fb-48de-b191-c2dd12f79be5", 28);
         categories.add(category);
 
+        category = new Category("General Knowledge", "#ffb300", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fgeneral_knowledge.png?alt=media&token=0c36beb4-489f-4929-8fa5-b9feac3f1fbe", 9);
+        categories.add(category);
+
+        category = new Category("Geography", "#5d4037", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fgeography.png?alt=media&token=fd5fbd58-173f-4500-9905-b8726b7bb624", 22);
+        categories.add(category);
+
+        category = new Category("Music", "#ad1457", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fe_music.png?alt=media&token=0f19db8e-e3d6-4de9-87c7-e42d47308c94", 12);
+        categories.add(category);
+
+        category = new Category("History", "#0097a7", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fhistory.png?alt=media&token=e6023b1a-3eef-460b-8c1e-9dc577e330da", 23);
+        categories.add(category);
+
+        category = new Category("Mathematics", "#0097a7", "https://firebasestorage.googleapis.com/v0/b/trivia-c135b.appspot.com/o/categories%2Fmaths.png?alt=media&token=c3fde85b-e36f-4655-91ea-91730ac17725", 19);
+        categories.add(category);
+
+
     }
 
 
@@ -100,15 +101,17 @@ public class StartQuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_quiz);
 
-        RelativeLayout layout = findViewById(R.id.layout);
+
         ImageView imageView = findViewById(R.id.category_image);
         TextView textView = findViewById(R.id.text);
         FloatingActionButton fab = findViewById(R.id.fab);
+        RelativeLayout layout = findViewById(R.id.layout);
 
-        category_id = getIntent().getStringExtra("category_id");
-        category_name = getIntent().getStringExtra("category");
+
         image = getIntent().getStringExtra("image");
         bg_color = getIntent().getStringExtra("bg_color");
+        category_id = getIntent().getStringExtra("category_id");
+        category_name = getIntent().getStringExtra("category");
 
         layout.setBackgroundColor(Color.parseColor(bg_color));
         textView.setText(category_name);
@@ -120,12 +123,6 @@ public class StartQuizActivity extends AppCompatActivity {
         fab.show();
 
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public static void startActivity(@NonNull Context context, boolean random) {
@@ -146,5 +143,11 @@ public class StartQuizActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

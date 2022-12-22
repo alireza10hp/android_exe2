@@ -1,8 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,15 +28,15 @@ public class LoginActivity extends AppCompatActivity {
         Button noAccountButton = (Button) findViewById(R.id.noAccountButton);
         Button mainMainButton = (Button) findViewById(R.id.mainMenuButton);
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-//        SQLiteDatabase loggedInUser = openOrCreateDatabase("loggedInUser",MODE_PRIVATE,null);
-//        loggedInUser.execSQL("CREATE TABLE IF NOT EXISTS LoggedIn (Username TEXT);");
-//        Cursor resultSet = loggedInUser.rawQuery("Select * from LoggedIn",null);
-//        resultSet.moveToFirst();
-//        String email = resultSet.getString(0);
-//        userLoggedIn = getUserByEmail(email);
-//        Log.d(LOG_TAG, email);
+        SQLiteDatabase loggedInUser = openOrCreateDatabase("loggedInUser",MODE_PRIVATE,null);
+        loggedInUser.execSQL("CREATE TABLE IF NOT EXISTS LoggedIn (Username TEXT);");
+        Cursor resultSet = loggedInUser.rawQuery("Select * from LoggedIn",null);
+        resultSet.moveToFirst();
+        String email = resultSet.getString(0);
+        User userLoggedIn = getUserByEmail(email);
+        Log.d(LOG_TAG, email);
 
-        //loggedInUser.delete("LoggedIn", "name=?", new String[]{courseName});
+
 
 
         noAccountButton.setOnClickListener(new View.OnClickListener() {

@@ -12,9 +12,9 @@ public class User {
 
     public User(String email, String password, int score, String username) {
         this.email = email;
-        this.password = password;
         this.score = score;
         this.username = username;
+        this.password = password;
 
     }
 

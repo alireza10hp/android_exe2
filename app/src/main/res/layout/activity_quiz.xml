@@ -10,7 +10,6 @@
     xmlns:timer="http://schemas.android.com/apk/res-auto">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        app:layout_constraintBottom_toTopOf="@id/adView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -132,50 +131,49 @@
 
                 <!-- Multiple Choice Layout -->
                 <ScrollView
-                    android:paddingTop="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="424dp"
+                    android:paddingTop="20dp">
 
                     <LinearLayout
                         android:id="@+id/multiple_layout"
-                        android:orientation="vertical"
-                        android:background="#212121"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        >
+                        android:background="#212121"
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/a1"
-                            android:foreground="?selectableItemBackground"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:clickable="true"
                             android:focusable="true"
-                            android:layout_margin="5dp"
-                            app:cardUseCompatPadding="true"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:foreground="?selectableItemBackground"
+                            app:cardUseCompatPadding="true">
 
                             <FrameLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
                                 <View
-                                    android:visibility="invisible"
                                     android:id="@+id/a1_check"
-                                    android:background="#4caf50"
-                                    android:layout_gravity="bottom"
                                     android:layout_width="match_parent"
-                                    android:layout_height="5dp"/>
+                                    android:layout_height="5dp"
+                                    android:layout_gravity="bottom"
+                                    android:background="#4caf50"
+                                    android:visibility="invisible" />
 
                                 <TextView
                                     android:id="@+id/a1_text"
-                                    android:textColor="#212121"
-                                    android:textSize="18sp"
-                                    android:fontFamily="@font/viga"
-                                    android:padding="10dp"
-                                    android:gravity="center"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/viga"
+                                    android:gravity="center"
+                                    android:padding="10dp"
+                                    android:textColor="#212121"
+                                    android:textSize="18sp" />
 
                             </FrameLayout>
 
@@ -183,35 +181,35 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/a2"
-                            android:foreground="?selectableItemBackground"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:clickable="true"
                             android:focusable="true"
-                            android:layout_margin="5dp"
-                            app:cardUseCompatPadding="true"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:foreground="?selectableItemBackground"
+                            app:cardUseCompatPadding="true">
 
                             <FrameLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
                                 <View
-                                    android:visibility="invisible"
                                     android:id="@+id/a2_check"
-                                    android:background="#4caf50"
-                                    android:layout_gravity="bottom"
                                     android:layout_width="match_parent"
-                                    android:layout_height="5dp"/>
+                                    android:layout_height="5dp"
+                                    android:layout_gravity="bottom"
+                                    android:background="#4caf50"
+                                    android:visibility="invisible" />
 
                                 <TextView
                                     android:id="@+id/a2_text"
-                                    android:textSize="18sp"
-                                    android:textColor="#212121"
-                                    android:fontFamily="@font/viga"
-                                    android:padding="10dp"
-                                    android:gravity="center"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/viga"
+                                    android:gravity="center"
+                                    android:padding="10dp"
+                                    android:textColor="#212121"
+                                    android:textSize="18sp" />
 
                             </FrameLayout>
 
@@ -219,35 +217,35 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/a3"
-                            android:foreground="?selectableItemBackground"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:clickable="true"
                             android:focusable="true"
-                            android:layout_margin="5dp"
-                            app:cardUseCompatPadding="true"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:foreground="?selectableItemBackground"
+                            app:cardUseCompatPadding="true">
 
                             <FrameLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
                                 <View
-                                    android:visibility="invisible"
                                     android:id="@+id/a3_check"
-                                    android:background="#4caf50"
-                                    android:layout_gravity="bottom"
                                     android:layout_width="match_parent"
-                                    android:layout_height="5dp"/>
+                                    android:layout_height="5dp"
+                                    android:layout_gravity="bottom"
+                                    android:background="#4caf50"
+                                    android:visibility="invisible" />
 
                                 <TextView
                                     android:id="@+id/a3_text"
-                                    android:textSize="18sp"
-                                    android:textColor="#212121"
-                                    android:fontFamily="@font/viga"
-                                    android:padding="10dp"
-                                    android:gravity="center"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/viga"
+                                    android:gravity="center"
+                                    android:padding="10dp"
+                                    android:textColor="#212121"
+                                    android:textSize="18sp" />
 
                             </FrameLayout>
 
@@ -255,35 +253,35 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/a4"
-                            android:foreground="?selectableItemBackground"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:clickable="true"
                             android:focusable="true"
-                            android:layout_margin="5dp"
-                            app:cardUseCompatPadding="true"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:foreground="?selectableItemBackground"
+                            app:cardUseCompatPadding="true">
 
                             <FrameLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
                                 <View
-                                    android:visibility="invisible"
                                     android:id="@+id/a4_check"
-                                    android:background="#4caf50"
-                                    android:layout_gravity="bottom"
                                     android:layout_width="match_parent"
-                                    android:layout_height="5dp"/>
+                                    android:layout_height="5dp"
+                                    android:layout_gravity="bottom"
+                                    android:background="#4caf50"
+                                    android:visibility="invisible" />
 
                                 <TextView
                                     android:id="@+id/a4_text"
-                                    android:textSize="18sp"
-                                    android:textColor="#212121"
-                                    android:fontFamily="@font/viga"
-                                    android:padding="10dp"
-                                    android:gravity="center"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/viga"
+                                    android:gravity="center"
+                                    android:padding="10dp"
+                                    android:textColor="#212121"
+                                    android:textSize="18sp" />
 
                             </FrameLayout>
 
@@ -402,14 +400,5 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:adUnitId="@string/banner_id_3"
-        app:adSize="BANNER"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

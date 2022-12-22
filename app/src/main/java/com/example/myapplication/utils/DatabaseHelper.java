@@ -9,7 +9,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "session";
     public static final String _ID = "_id";
     public static final String TOKEN = "token";
-    private static final String DB_NAME = "TRIVIA.DB";
+    private static final String DB_NAME = "KING_QUIZ.DB";
     private static final int DB_VERSION = 1;
 
     private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + _ID

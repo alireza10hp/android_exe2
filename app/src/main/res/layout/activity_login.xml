@@ -83,7 +83,7 @@
             android:layout_marginStart="40pt"
             android:layout_marginBottom="20pt"
             android:layout_height="wrap_content"
-            android:text="@string/don_t_have_an_account"
+            android:text="don_t_have_an_account"
             android:textSize="4pt"
             android:backgroundTint="#00292929"
             android:background="#00292929"

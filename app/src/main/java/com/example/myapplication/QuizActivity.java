@@ -26,21 +26,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.example.myapplication.utils.Constants;
-import com.example.myapplication.utils.DatabaseHelper;
-import com.example.myapplication.utils.HttpHandler;
-import com.danimahardhika.cafebar.CafeBar;
-import com.danimahardhika.cafebar.CafeBarTheme;
 import com.example.myapplication.models.BooleanQuestion;
 import com.example.myapplication.models.MultipleQuestion;
 import com.example.myapplication.models.SessionToken;
+import com.example.myapplication.utils.Constants;
 import com.example.myapplication.utils.DBManager;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
+import com.example.myapplication.utils.DatabaseHelper;
+import com.example.myapplication.utils.HttpHandler;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -64,9 +58,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import io.github.krtkush.lineartimer.LinearTimer;
-import io.github.krtkush.lineartimer.LinearTimerView;
-
 public class QuizActivity extends AppCompatActivity {
 
     private final String TAG=QuizActivity.class.getSimpleName();
@@ -89,8 +80,6 @@ public class QuizActivity extends AppCompatActivity {
     private String response_code;
     private List<SessionToken> sessionTokenList;
     private ProgressBar progressbar;
-    private LinearTimerView timerView;
-    private LinearTimer timer;
     private int question_number=1;
     private FrameLayout layout;
     private String question_number_max;
@@ -128,16 +117,7 @@ public class QuizActivity extends AppCompatActivity {
                 .requestProfile()
                 .build();
 
-        MobileAds.initialize(this);
 
-        AdView adView=findViewById(R.id.adView);
-        adView.loadAd(new AdRequest.Builder().build());
-
-        interstitialAd=new InterstitialAd(this);
-        interstitialAd.setAdUnitId(getString(R.string.interstitial_id_1));
-        interstitialAd.loadAd(new AdRequest.Builder().build());
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         mQuestionList=new ArrayList<>();
         bQuestionList=new ArrayList<>();
@@ -165,28 +145,6 @@ public class QuizActivity extends AppCompatActivity {
         a2_text=findViewById(R.id.a2_text);
         a3_text=findViewById(R.id.a3_text);
         a4_text=findViewById(R.id.a4_text);
-        timerView=findViewById(R.id.timer);
-        timer = new LinearTimer.Builder()
-                .linearTimerView(timerView)
-                .duration(15000)//15 sec
-                .timerListener(new LinearTimer.TimerListener() {
-                    @Override
-                    public void animationComplete() {
-                        if(question_loaded)
-                            validateAnswers();
-                    }
-
-                    @Override
-                    public void timerTick(long tickUpdateInMillis) {
-
-                    }
-
-                    @Override
-                    public void onTimerReset() {
-
-                    }
-                })
-                .build();
 
         answersList = new ArrayList<>();
         category_id=getIntent().getStringExtra("category_id");
@@ -197,7 +155,6 @@ public class QuizActivity extends AppCompatActivity {
         question_number_max=getIntent().getStringExtra("max");
 
         layout.setBackgroundColor(Color.parseColor(bg_color));
-        timerView.setInitialColor(Color.parseColor(bg_color));
         fade_in = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         fade_out = AnimationUtils.loadAnimation(this, R.anim.fade_out);
         scale_up = AnimationUtils.loadAnimation(this, R.anim.scale_up);
@@ -213,7 +170,6 @@ public class QuizActivity extends AppCompatActivity {
         mDialog.setCancelable(false);
         mDialog.setCanceledOnTouchOutside(false);
 
-        timer.startTimer();
         new GetAQuestion().execute();
     }
 
@@ -235,82 +191,34 @@ public class QuizActivity extends AppCompatActivity {
             if(TextUtils.isEmpty(selected_answer)) {
 
                 missed_count++;
-                CafeBar.builder(this)
-                        .content((missed[new Random().nextInt(missed.length)]) + ", Correct answer was " + correct_ans)
-                        .theme(CafeBarTheme.Custom(Color.parseColor("#f44336")))
-                        .duration(CafeBar.Duration.MEDIUM)
-                        .floating(true)
-                        .show();
 
             }else{
                 if (selected_answer.toLowerCase().equals(correct_ans.toLowerCase())) {
 
                     correct++;
-
-                    CafeBar.builder(this)
-                            .content((appreciate[new Random().nextInt(appreciate.length)]))
-                            .theme(CafeBarTheme.Custom(Color.parseColor("#4caf50")))
-                            .floating(true)
-                            .duration(CafeBar.Duration.MEDIUM)
-                            .show();
                 }else {
-
                     incorrect++;
-                    CafeBar.builder(this)
-                            .content((depreciate[new Random().nextInt(depreciate.length)])+" Correct answer was " + correct_ans)
-                            .theme(CafeBarTheme.Custom(Color.parseColor("#f44336")))
-                            .duration(CafeBar.Duration.MEDIUM)
-                            .floating(true)
-                            .show();
-
                 }
             }
-
         } else {
 
             String correct_ans = decodeBase64(bQuestionList.get(bQuestionList.size() - 1).getCorrect_answer());
 
             if(TextUtils.isEmpty(selected_answer)){
-
                 missed_count++;
-                CafeBar.builder(this)
-                        .content((missed[new Random().nextInt(missed.length)])+", Correct answer was " + correct_ans)
-                        .theme(CafeBarTheme.Custom(Color.parseColor("#f44336")))
-                        .duration(CafeBar.Duration.MEDIUM)
-                        .floating(true)
-                        .show();
-
             }else{
                 if (selected_answer.toLowerCase().equals(correct_ans.toLowerCase())) {
-
                     correct++;
-                    CafeBar.builder(this)
-                            .content((appreciate[new Random().nextInt(appreciate.length)]))
-                            .theme(CafeBarTheme.Custom(Color.parseColor("#4caf50")))
-                            .floating(true)
-                            .duration(CafeBar.Duration.MEDIUM)
-                            .show();
-
                 } else {
-
                     incorrect++;
-                    CafeBar.builder(this)
-                            .content((depreciate[new Random().nextInt(depreciate.length)])+" Correct answer was " + correct_ans)
-                            .theme(CafeBarTheme.Custom(Color.parseColor("#f44336")))
-                            .duration(CafeBar.Duration.MEDIUM)
-                            .floating(true)
-                            .show();
-
                 }
             }
-
         }
 
         if(question_number==Integer.parseInt(question_number_max)) {
             if(fab.isShown()){
                 fab.hide();
             }
-            timerView.setVisibility(View.GONE);
             c_fab.show();
             TextView result=findViewById(R.id.result);
             result.setText(String.format("%s/%s",String.valueOf(correct),question_number_max));
@@ -324,24 +232,18 @@ public class QuizActivity extends AppCompatActivity {
             question_text.startAnimation(fade_in);
             question_text.setText("Let's see what you have got");
             progressbar.setVisibility(View.INVISIBLE);
-            try{
-                timer.pauseTimer();
-            }catch (IllegalStateException e){
-                e.printStackTrace();
-            }
+
         }else if(question_number==Integer.valueOf(question_number_max)-1) {
             question_number++;
             question_text.startAnimation(fade_in);
             question_text.setText("Getting your last question...");
             progressbar.setVisibility(View.VISIBLE);
-            timer.restartTimer();
             new GetAQuestion().execute();
         }else{
             question_number++;
             question_text.startAnimation(fade_in);
             question_text.setText("Getting next question...");
             progressbar.setVisibility(View.VISIBLE);
-            timer.restartTimer();
             new GetAQuestion().execute();
         }
 
@@ -383,7 +285,6 @@ public class QuizActivity extends AppCompatActivity {
         if(question_loaded){
 
             try {
-                timer.pauseTimer();
 
                 new MaterialDialog.Builder(this)
                         .title("Game is on")
@@ -398,7 +299,7 @@ public class QuizActivity extends AppCompatActivity {
                         .onNegative((dialog, which) -> {
                             dialog.dismiss();
                             try{
-                                timer.resumeTimer();
+
                             } catch (IllegalStateException e) {
                                 e.printStackTrace();
                                 Toast.makeText(QuizActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -422,11 +323,6 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(interstitialAd.isLoaded()){
-            interstitialAd.show();
-        }else{
-            Log.d("TAG","Ad failed to load");
-        }
     }
 
     public void checkNetwork(View view) {
@@ -663,7 +559,6 @@ public class QuizActivity extends AppCompatActivity {
             super.onPreExecute();
 
             try {
-                timer.pauseTimer();
             }catch (IllegalStateException e){
                 e.printStackTrace();
             }
@@ -798,7 +693,6 @@ public class QuizActivity extends AppCompatActivity {
 
                 if (response_code.equals("3")) {
                     try {
-                        timer.pauseTimer();
                     } catch (IllegalStateException e) {
                         e.printStackTrace();
                     }
@@ -817,7 +711,6 @@ public class QuizActivity extends AppCompatActivity {
                     findViewById(R.id.error_layout).setVisibility(View.GONE);
                 } else if (response_code.equals("4")) {
                     try {
-                        timer.pauseTimer();
                     } catch (IllegalStateException e) {
                         e.printStackTrace();
                     }
@@ -840,7 +733,6 @@ public class QuizActivity extends AppCompatActivity {
                 if (error) {
                     hideLayouts();
                 } else {
-                    timer.restartTimer();
                     progressbar.setVisibility(View.INVISIBLE);
 
                     if (r_fab.isShown()) {
@@ -1131,7 +1023,6 @@ public class QuizActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }finally {
                         try {
-                            timer.startTimer();
                         }catch (IllegalStateException e){
                             e.printStackTrace();
                         }
@@ -1229,7 +1120,6 @@ public class QuizActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }finally {
                         try {
-                            timer.startTimer();
                             new GetAQuestion().execute();
                         }catch (Exception e){
                             e.printStackTrace();

@@ -1,17 +1,16 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -111,15 +110,12 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
 
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Cursor resultSet = MainActivity.loggedInUser.rawQuery("Select * from LoggedIn", null);
-                resultSet.moveToFirst();
-                String email = resultSet.getString(0);
-                MainActivity.loggedInUser.delete("LoggedIn", "Username=?", new String[]{email});
-                launchMainActivity(view);
-            }
+        logoutButton.setOnClickListener(view -> {
+            Cursor resultSet = MainActivity.loggedInUser.rawQuery("Select * from LoggedIn", null);
+            resultSet.moveToFirst();
+            String email = resultSet.getString(0);
+            MainActivity.loggedInUser.delete("LoggedIn", "Username=?", new String[]{email});
+            launchMainActivity(view);
         });
     }
 

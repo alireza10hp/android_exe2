@@ -6,14 +6,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,19 +14,21 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.example.myapplication.adapters.ScoresAdapter;
-import com.example.myapplication.models.Score;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
+import com.example.myapplication.adapters.ScoresAdapter;
+import com.example.myapplication.models.Score;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
@@ -76,9 +71,6 @@ public class Account extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        MobileAds.initialize(this);
-        AdView adView=findViewById(R.id.adView);
-        adView.loadAd(new AdRequest.Builder().build());
 
         getSupportActionBar().setTitle("Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -102,14 +94,6 @@ public class Account extends AppCompatActivity {
         mDialog.setCancelable(false);
         mDialog.setCanceledOnTouchOutside(false);
 
-        GoogleSignInOptions gso =new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN)
-                .requestServerAuthCode(getString(R.string.web_client_id))
-                .requestEmail()
-                .requestProfile()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
 
         if(mAuth.getCurrentUser()!=null){
 
@@ -120,7 +104,7 @@ public class Account extends AppCompatActivity {
                     .addOnSuccessListener(documentSnapshot -> {
 
                         String point=documentSnapshot.getString("points");
-                        getSharedPreferences("Trivia", Context.MODE_PRIVATE).edit().putString("points",point).apply();
+                        getSharedPreferences("King Quiz", Context.MODE_PRIVATE).edit().putString("points",point).apply();
 
                         name.setText(documentSnapshot.getString("name"));
                         points.setText(String.format("Points scored : %s", point));
@@ -290,35 +274,7 @@ public class Account extends AppCompatActivity {
                 .onPositive((dialog, which) -> {
                     dialog.dismiss();
                     mDialog.show();
-                    mGoogleSignInClient.signOut()
-                            .addOnSuccessListener(aVoid -> {
 
-                                mAuth.signOut();
-                                mDialog.dismiss();
-                                Glide.with(getApplicationContext())
-                                        .load(R.mipmap.user)
-                                        .into(pic);
-
-                                findViewById(R.id.connected_layout).animate()
-                                        .setDuration(300)
-                                        .alpha(0f)
-                                        .setListener(new AnimatorListenerAdapter() {
-                                            @Override
-                                            public void onAnimationEnd(Animator animation) {
-                                                super.onAnimationEnd(animation);
-                                                findViewById(R.id.connected_layout).setVisibility(View.GONE);
-                                                findViewById(R.id.connect_layout).setVisibility(View.VISIBLE);
-                                                setupUI(false);
-                                            }
-                                        })
-                                        .start();
-
-                            })
-                            .addOnFailureListener(e -> {
-                                mDialog.dismiss();
-                                Toast.makeText(getApplicationContext(), "Error logging out.", Toast.LENGTH_SHORT).show();
-                                Log.e(TAG,e.getLocalizedMessage());
-                            });
                 })
                 .onNegative((dialog, which) -> {
                     dialog.dismiss();
@@ -441,7 +397,7 @@ public class Account extends AppCompatActivity {
                                                 .start();
                                         String point=documentSnapshot.getString("points");
                                         points.setText(String.format("Points scored : %s", point));
-                                        getSharedPreferences("Trivia", Context.MODE_PRIVATE).edit().putString("points",point).apply();
+                                        getSharedPreferences("King_Quiz", Context.MODE_PRIVATE).edit().putString("points",point).apply();
 
 
                                     }
